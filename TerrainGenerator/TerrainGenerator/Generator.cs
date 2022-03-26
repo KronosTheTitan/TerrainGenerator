@@ -17,6 +17,7 @@ class Generator
     {
         new Mountain(0,0,64,1.5f),
         new Mountain(0,32,64,1.5f),
+        new Mountain(16,48,35,.9f),
         new Mountain(64,64,64,1.5f)
     };
     public void GenerateTerrain()

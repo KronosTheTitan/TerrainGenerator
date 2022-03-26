@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 using TerrainGenerator;
 class MountainRidge
 {
-    Vector3 a;
-    Vector3 b;
-    public MountainRidge(Vector3 pA,Vector3 pB)
+    Mountain a;
+    Mountain b;
+    public float direction;
+    public MountainRidge(Mountain pA, Mountain pB)
     {
-
+        if (pA.position.z < pB.position.z)
+        {
+            b = pA;
+            a = pB;
+        }
+        else
+        {
+            a = pA;
+            b = pB;
+        }
+        Vector2 dir = new Vector2(a.position.x - b.position.x, a.position.y - b.position.y);
     }
 }

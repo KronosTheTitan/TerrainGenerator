@@ -8,6 +8,7 @@ class Mountain
 {
     public Vector3 position;
     public float slopeFactor = 0.9f;
+    List<MountainRidge> ridges;
     public Mountain(int x,int y,int z,float slope = 0.5f)
     {
         position = new Vector3(x, y, z);

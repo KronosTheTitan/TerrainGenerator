@@ -7,6 +7,7 @@ using TerrainGenerator;
 class MountainChain
 {
     List<Mountain> mountains;
+    List<MountainRidge> ridges;
     public void AddToChain(Mountain input)
     {
         if (mountains.Contains(input)) return;

@@ -81,6 +81,10 @@ public struct Vector2
 		return f * (Mathf.PI / 180f);
 
 	}
+	public static Vector2 FromVector3(Vector3 vec3)
+    {
+		return new Vector2(vec3.x, vec3.y);
+    }
 	public static float Rad2Deg(float f)
 	{
 		return f * (180f / Mathf.PI);

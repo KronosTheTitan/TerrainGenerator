@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TerrainGenerator;
-struct Vector3
+public struct Vector3
 {
     public float x;
     public float y;

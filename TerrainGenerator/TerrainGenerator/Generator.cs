@@ -15,15 +15,23 @@ class Generator
     Bitmap bmp;
     Mountain[] mountains =
     {
-        new Mountain(0,0,64,1.5f),
-        new Mountain(0,32,64,1.5f),
-        new Mountain(16,48,35,.9f),
-        new Mountain(64,64,64,1.5f)
+        new Mountain(0,0,64),
+        new Mountain(0,32,64),
+        new Mountain(16,48,35),
+        new Mountain(128,128,64)
+    };
+    int[] pRidges =
+    {
+        0,1,
+        1,2
     };
     public void GenerateTerrain()
     {
-        bmp = new Bitmap(64,64);
+        bmp = new Bitmap(512,512);
         bmp.SetResolution(64, 64);
+
+        GenerateRidges();
+
         int[,] px = new int[bmp.Width, bmp.Height];
         for(int x = 0; x < bmp.Width;x++)
         {
@@ -42,10 +50,21 @@ class Generator
         {
             Vector3 dist = new Vector3(x, y);
             dist -= mountain.position;
-            maxHeights.Add((int)Mathf.Clamp(mountain.position.z - (dist.LengthXY() * mountain.slopeFactor), 0, 255));
+            maxHeights.Add((int)mountain.GetHeightEffect(x,y));
         }
         foreach (int i in maxHeights)
             if (i > pixelHeight) pixelHeight = i;
         bmp.SetPixel(x, y, Color.FromArgb(255, pixelHeight, pixelHeight, pixelHeight));
+    }
+    public void GenerateRidges()
+    {
+        for(int i = 0; i < pRidges.Length; i += 2)
+        {
+            MountainRidge ridge = new MountainRidge(mountains[pRidges[i]], mountains[pRidges[i+1]]);
+        }
+        foreach(Mountain mountain in mountains)
+        {
+            mountain.AddRidges();
+        }
     }
 }
